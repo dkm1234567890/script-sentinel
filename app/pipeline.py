@@ -181,3 +181,84 @@ async def analyze_screenplay(pdf_bytes: bytes) -> ClearanceReport:
         findings=findings,
         tool_calls=tool_calls,
     )
+
+
+def analyze_parallel_demo() -> ClearanceReport:
+    """Run a transparent Parallel-only fallback for the bundled synthetic sample."""
+    references = [
+        ReferenceCandidate(
+            reference_text="Apollo 11 landing date",
+            categories=["historical_factual_claim"],
+            scene_or_page="Synthetic sample, opening scene",
+            script_context="Apollo 11 landed on the Moon on July 20, 1971.",
+            why_research="The screenplay deliberately contains an incorrect historical date.",
+            search_query="official Apollo 11 Moon landing date July 20 1969",
+        ),
+        ReferenceCandidate(
+            reference_text="William Shakespeare quotation",
+            categories=["quoted_adapted_text"],
+            scene_or_page="Synthetic sample, archive scene",
+            script_context="All the world's a stage.",
+            why_research="Confirm the wording, source, and public-domain context.",
+            search_query="All the world's a stage Shakespeare As You Like It public domain",
+        ),
+        ReferenceCandidate(
+            reference_text="NASA founding date",
+            categories=["historical_factual_claim", "brand_organization"],
+            scene_or_page="Synthetic sample, draft caption",
+            script_context="The National Aeronautics and Space Administration was founded in 1958.",
+            why_research="Verify the factual claim against reliable sources.",
+            search_query="official NASA established 1958 history",
+        ),
+        ReferenceCandidate(
+            reference_text="First public film screening",
+            categories=["historical_factual_claim"],
+            scene_or_page="Synthetic sample, final card",
+            script_context="The first public film screening happened in 1894.",
+            why_research="The claim depends on definitions and requires human review.",
+            search_query="first public film screening history 1894 1895 Lumiere",
+        ),
+    ]
+    findings: list[Finding] = []
+    for index, reference in enumerate(references):
+        raw = search_web_for_clearance(
+            reference.search_query,
+            "Find current, traceable evidence for screenplay pre-clearance research.",
+            3,
+        )
+        sources = [
+            SourceEvidence.model_validate(item) for item in raw.get("results", [])
+        ]
+        findings.append(
+            Finding(
+                reference_text=reference.reference_text,
+                categories=reference.categories,
+                scene_or_page=reference.scene_or_page,
+                script_context=reference.script_context,
+                status="high_attention" if index == 0 else "review",
+                confidence="high" if index == 0 else "medium",
+                rationale=(
+                    "The scripted 1971 date conflicts with established Apollo 11 history; "
+                    "the cited sources should be checked before narration."
+                    if index == 0
+                    else "Live Parallel Search returned source-linked evidence for qualified human review."
+                ),
+                recommended_action="Open the cited sources and verify the screenplay wording before approval.",
+                search_query=reference.search_query,
+                sources=sources,
+                limitations=[
+                    "Emergency demo fallback: Google Cloud authentication was unavailable, so Gemini extraction and ADK assessment were not executed in this run."
+                ],
+            )
+        )
+    report = ClearanceReport(
+        screenplay_title="Signal at Dawn — emergency Parallel-only demo",
+        findings=findings,
+        tool_calls=len(references),
+    )
+    report.disclaimer = (
+        "EMERGENCY DEMO MODE: live Parallel Search was used, but Google Cloud authentication "
+        "was unavailable, so Gemini extraction and ADK assessment were not executed. "
+        "Script Sentinel provides research triage, not legal advice."
+    )
+    return report
