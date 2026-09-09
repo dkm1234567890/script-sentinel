@@ -1,0 +1,39 @@
+SIGNAL AT DAWN
+An original synthetic screenplay excerpt created for the Agentic Cinema hackathon.
+
+FADE IN:
+
+INT. NORTHSTAR ARCHIVE - NIGHT
+
+LEENA, a documentary editor, studies a wall of index cards. A handwritten card reads:
+"Apollo 11 landed on the Moon on July 20, 1971."
+
+LEENA
+That date feels wrong. Check it before the narration session.
+
+ARUN enters with a bottle labeled NORTHSTAR COLA, a fictional product created for this screenplay.
+
+ARUN
+The sponsor says Northstar Cola has been "fueling explorers since 1899."
+
+LEENA
+There is no sponsor. You invented that company yesterday.
+
+She opens a public-domain collection and reads a short phrase attributed to William Shakespeare:
+"All the world's a stage."
+
+ARUN
+Can we establish whether the source is in the public domain, and whether this exact wording is accurate?
+
+On screen is a draft caption: "The National Aeronautics and Space Administration was founded in 1958."
+
+LEENA
+Verify that against a primary source too.
+
+The final card contains an unresolved statement: "The first public film screening happened in 1894."
+
+LEENA
+That depends on what counts as public, and what counts as film. Mark it for human review.
+
+FADE OUT.
+
