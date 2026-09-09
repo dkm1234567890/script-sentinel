@@ -1,0 +1,2 @@
+"""Script Sentinel application package."""
+
