@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Source-backed screenplay pre-clearance research." />
+    <title>Script Sentinel</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Script Sentinel home">
+        <span class="brand-mark">SS</span>
+        <span>Script Sentinel</span>
+      </a>
+      <span class="track">Parallel track</span>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div>
+          <p class="eyebrow">Pre-clearance research</p>
+          <h1>Find the real-world references hiding in your screenplay.</h1>
+          <p class="lede">Upload a PDF. Gemini identifies references, an ADK agent researches them with Parallel Search, and you receive a cited human-review queue.</p>
+        </div>
+        <div class="workflow" aria-label="Analysis workflow">
+          <span>Read</span><i></i><span>Research</span><i></i><span>Review</span>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <form id="upload-form" class="upload-card">
+          <label class="dropzone" for="screenplay">
+            <span class="drop-icon" aria-hidden="true">PDF</span>
+            <strong>Choose a screenplay</strong>
+            <span id="file-label">Text-based PDF, up to 20 MB</span>
+            <input id="screenplay" name="file" type="file" accept="application/pdf,.pdf" required />
+          </label>
+          <button id="analyze-button" type="submit">Analyze screenplay</button>
+          <p class="privacy">Files are processed for this analysis and are not intentionally written to permanent storage.</p>
+        </form>
+
+        <aside class="side-panel">
+          <p class="panel-label">What gets checked</p>
+          <ul>
+            <li>People and sensitive portrayals</li>
+            <li>Brands and organizations</li>
+            <li>Quoted or adapted material</li>
+            <li>Historical and factual claims</li>
+            <li>Locations and fictional-name collisions</li>
+          </ul>
+        </aside>
+      </section>
+
+      <section id="progress" class="progress hidden" aria-live="polite">
+        <div class="spinner" aria-hidden="true"></div>
+        <div>
+          <strong id="progress-title">Reading screenplay</strong>
+          <p id="progress-copy">Gemini is identifying references and their scene context.</p>
+        </div>
+      </section>
+
+      <section id="error" class="error hidden" role="alert"></section>
+
+      <section id="results" class="results hidden">
+        <div class="results-head">
+          <div>
+            <p class="eyebrow">Research report</p>
+            <h2 id="report-title">Screenplay review</h2>
+          </div>
+          <button id="download-button" class="secondary" type="button">Download JSON</button>
+        </div>
+        <div id="summary" class="summary"></div>
+        <div id="findings" class="findings"></div>
+        <p id="disclaimer" class="disclaimer"></p>
+      </section>
+    </main>
+
+    <footer>Powered by Gemini on Google Cloud, Google ADK, and Parallel Search.</footer>
+    <script src="/static/app.js" defer></script>
+  </body>
+</html>
+
