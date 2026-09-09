@@ -55,3 +55,6 @@ Future versions could compare script revisions, integrate licensed rights databa
 
 Script Sentinel provides research triage, not legal advice or a clearance decision. A qualified reviewer must verify sources and make final legal and production decisions.
 
+## Current demo disclosure
+
+Google Cloud billing and authentication could not be completed before submission because the payment portal failed. The repository contains the intended Gemini Enterprise/Vertex AI and Google ADK implementation, but the recorded emergency local demo uses the explicitly labelled Parallel-only fallback for the bundled synthetic screenplay. Its searches and citations are live; Gemini extraction, ADK assessment, and Cloud Run hosting were not executed in that fallback run.

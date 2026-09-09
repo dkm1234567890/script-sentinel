@@ -64,6 +64,10 @@ python -m pytest -q
 
 The included tests do not call paid external APIs. A real end-to-end test requires configured Google Cloud and Parallel credentials.
 
+## Emergency local demo mode
+
+The normal production path requires Google Cloud authentication. If that authentication is unavailable, the bundled synthetic screenplay can be demonstrated with `ALLOW_PARALLEL_DEMO_FALLBACK=true`. This fallback performs real Parallel Search calls for a fixed set of references from the bundled sample and labels every result and the final disclaimer to state that Gemini extraction and ADK assessment did not execute. It is a transparent backup demonstration, not a substitute for the required Google Cloud runtime.
+
 ## Deploy to Cloud Run
 
 Set the project variables and store the Parallel key in Secret Manager. Never put the key directly in the command history or repository.
